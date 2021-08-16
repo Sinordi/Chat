@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        IQKeyboardManager.shared.enable = true // Поднимает View, когда запускается клавиутура
+        IQKeyboardManager.shared.enableAutoToolbar = false // Убирает дополнительную строку toolBar над клавиатурой (если непонятно, попробуй изменить на true)
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true // Скрывает клавиатуру при нажатии в любом месте
+        print(db)
+        
         return true
     }
 
